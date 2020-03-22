@@ -1,4 +1,4 @@
-import { CREATE_POST, FETCHED_POST, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT } from "./types";
+import { CREATE_POST, SHOW_LOADER, HIDE_LOADER, SHOW_ALERT, HIDE_ALERT, REQUEST_POSTS } from "./types";
 
 export function createPost(post) {
     return {
@@ -8,19 +8,8 @@ export function createPost(post) {
 }
 
 export function fetchePost() {
-    return async dispatch => {
-        try {
-            dispatch(showLoader());
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
-            const json = await response.json();
-            dispatch({ type: FETCHED_POST, payload: json })
-            dispatch(hideLoader());
-        }
-        catch (e) {
-            dispatch(hideLoader());
-            dispatch(showAlert('Что-то пошло не так'));
-        }
-
+    return {
+        type: REQUEST_POSTS
     }
 }
 export function showLoader() {

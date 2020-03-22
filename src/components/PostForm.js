@@ -25,7 +25,6 @@ class PostForm extends Component {
             id: Date.now().toString()
         }
 
-        console.log(newPost);
         this.props.createPost(newPost);
         this.setState({ title: '' });
     }
